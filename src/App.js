@@ -118,7 +118,7 @@ function App() {
     
         <div className="outer-div">
         <button className="webcam-wrapper" style={{zIndex:20}} onClick={handleClick}>Switch camera</button>
-          <Webcam className="webcam-wrapper" ref={webcamRef} mirrored={facingMode === FACING_MODE_USER ? true : false} videoConstraints={{
+          <Webcam className="webcam-wrapper" ref={webcamRef} videoConstraints={{
           ...videoConstraints,
           facingMode
         }}/>
