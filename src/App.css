@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+.outer-div{
+  height: 480px;
+  width: 640px;
+}
+
+.canvas-wrapper{
+  position: absolute;
+}
+
+.webcam-wrapper{
+  position: absolute;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
