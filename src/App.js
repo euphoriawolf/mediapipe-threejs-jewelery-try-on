@@ -54,6 +54,7 @@ var scale = 0.1;
 function App() {
 
   const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
+  console.log(facingMode);
 
   const handleClick = useCallback(() => {
     setFacingMode(
@@ -121,12 +122,12 @@ function App() {
           ...videoConstraints,
           facingMode
         }}/>
-          <Canvas className="canvas-wrapper">
+          {/* <Canvas className="canvas-wrapper">
             <pointLight intensity={1}/>
             <Suspense fallback={null}>
               <Model position={[0,0,-3]}/>
             </Suspense>
-          </Canvas>
+          </Canvas> */}
         </div>
     
   );
