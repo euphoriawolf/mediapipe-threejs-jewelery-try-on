@@ -3,7 +3,7 @@ import {Hands} from "@mediapipe/hands";
 import * as HandsM from "@mediapipe/hands";
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
-import {useRef, useEffect, Suspense} from "react";
+import {useRef, useEffect, Suspense, useState, useCallback} from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -15,6 +15,15 @@ const Lights = () => {
       </>
   )
 }
+
+const FACING_MODE_USER = "user";
+const FACING_MODE_ENVIRONMENT = "environment";
+
+const videoConstraints = {
+  facingMode: FACING_MODE_USER
+};
+
+
 
 const Model = () => {
   const gltf = useLoader(GLTFLoader, "https://3dfoodmodel-modelviewer.s3.amazonaws.com/assets/Bolle/Nevada_Blue/BolleNevada_Blue_v1.glb");
@@ -43,6 +52,17 @@ var scale = 0.1;
 
 
 function App() {
+
+  const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
+
+  const handleClick = useCallback(() => {
+    setFacingMode(
+      prevState =>
+        prevState === FACING_MODE_USER
+          ? FACING_MODE_ENVIRONMENT
+          : FACING_MODE_USER
+    );
+  }, []);
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -96,7 +116,11 @@ function App() {
   return (
     
         <div className="outer-div">
-          <Webcam className="webcam-wrapper" ref={webcamRef} mirrored={true}/>
+        <button onClick={handleClick}>Switch camera</button>
+          <Webcam className="webcam-wrapper" ref={webcamRef} mirrored={true} videoConstraints={{
+          ...videoConstraints,
+          facingMode
+        }}/>
           <Canvas className="canvas-wrapper">
             <pointLight intensity={1}/>
             <Suspense fallback={null}>
