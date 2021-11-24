@@ -67,53 +67,53 @@ function App() {
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  var camera = useRef(null);
+  var camera = null;
 
-  function onResults(results){
-    //console.log(results);
-    if (results.multiHandLandmarks) {
-      for (const landmarks of results.multiHandLandmarks) {
-        if (landmarks[14].x !== "undefined") {
-          landmark_x = (landmarks[14].x + landmarks[13].x)/2;
-          landmark_y = (landmarks[14].y + landmarks[13].y)/2;
-          landmark_z = (landmarks[14].z + landmarks[13].z)/2;
-          scale = landmarks[13].y - landmarks[14].y;
-          //console.log(scale);
-        }
-      }
-    }
-  }
+  // function onResults(results){
+  //   //console.log(results);
+  //   if (results.multiHandLandmarks) {
+  //     for (const landmarks of results.multiHandLandmarks) {
+  //       if (landmarks[14].x !== "undefined") {
+  //         landmark_x = (landmarks[14].x + landmarks[13].x)/2;
+  //         landmark_y = (landmarks[14].y + landmarks[13].y)/2;
+  //         landmark_z = (landmarks[14].z + landmarks[13].z)/2;
+  //         scale = landmarks[13].y - landmarks[14].y;
+  //         //console.log(scale);
+  //       }
+  //     }
+  //   }
+  // }
 
-  useEffect(() => {
-    const hands = new Hands({
-      locateFile:(file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-      }
-    })
+  // useEffect(() => {
+  //   const hands = new Hands({
+  //     locateFile:(file) => {
+  //       return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+  //     }
+  //   })
 
-    hands.setOptions({
-      maxNumHands: 2,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5,
-      selfieMode: true,
-    })
+  //   hands.setOptions({
+  //     maxNumHands: 2,
+  //     modelComplexity: 1,
+  //     minDetectionConfidence: 0.5,
+  //     minTrackingConfidence: 0.5,
+  //     //selfieMode: true,
+  //   })
 
-    hands.onResults(onResults);
+  //   hands.onResults(onResults);
 
-    if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null){
-      camera.current = new cam.Camera(webcamRef.current.video, {
-        onFrame: async()=>{
-          await hands.send({image:webcamRef.current.video})
-        },
-        //width: 640,
-        //height: 480,
-      })
+  //   if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null){
+  //     camera = new cam.Camera(webcamRef.current.video, {
+  //       onFrame: async()=>{
+  //         await hands.send({image:webcamRef.current.video})
+  //       },
+  //       //width: 640,
+  //       //height: 480,
+  //     })
 
-      camera.current.start();
-    }
+  //     camera.start();
+  //   }
 
-  })
+  //})
   return (
     
         <div className="outer-div">
