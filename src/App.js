@@ -46,7 +46,7 @@ function App() {
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  var camera = null;
+  var camera = useRef(null);
 
   function onResults(results){
     //console.log(results);
@@ -81,7 +81,7 @@ function App() {
     hands.onResults(onResults);
 
     if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null){
-      camera = new cam.Camera(webcamRef.current.video, {
+      camera.current = new cam.Camera(webcamRef.current.video, {
         onFrame: async()=>{
           await hands.send({image:webcamRef.current.video})
         },
@@ -89,7 +89,7 @@ function App() {
         //height: 480,
       })
 
-      camera.start();
+      camera.current.start();
     }
 
   })
