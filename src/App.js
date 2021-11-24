@@ -20,7 +20,7 @@ const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
 
 const videoConstraints = {
-  facingMode: "environment"
+  facingMode: "user"
 };
 
 
@@ -117,8 +117,9 @@ function App() {
   return (
     
         <div className="outer-div">
+        <h1>furkann dindar</h1>
         <button className="webcam-wrapper" style={{zIndex:20}} onClick={handleClick}>Switch camera</button>
-          <Webcam className="webcam-wrapper" ref={webcamRef} mirrored={true} videoConstraints={{
+          <Webcam className="webcam-wrapper" ref={webcamRef} mirrored={facingMode === FACING_MODE_USER ? true : false} videoConstraints={{
           ...videoConstraints,
           facingMode
           }}/>
