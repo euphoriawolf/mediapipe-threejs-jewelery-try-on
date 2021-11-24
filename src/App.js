@@ -20,7 +20,7 @@ const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
 
 const videoConstraints = {
-  facingMode: FACING_MODE_USER
+  facingMode: "environment"
 };
 
 
@@ -118,10 +118,7 @@ function App() {
     
         <div className="outer-div">
         <button className="webcam-wrapper" style={{zIndex:20}} onClick={handleClick}>Switch camera</button>
-          <Webcam className="webcam-wrapper" ref={webcamRef} videoConstraints={{
-          ...videoConstraints,
-          facingMode
-        }}/>
+          <Webcam className="webcam-wrapper" ref={webcamRef} videoConstraints={videoConstraints}/>
           {/* <Canvas className="canvas-wrapper">
             <pointLight intensity={1}/>
             <Suspense fallback={null}>
