@@ -7,6 +7,7 @@ import {useRef, useEffect, Suspense, useState, useCallback} from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import * as controlUtils from "@mediapipe/control_utils";
 
 const Lights = () => {
   return (
@@ -56,6 +57,8 @@ function App() {
   const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
   console.log(facingMode);
 
+  console.log(controlUtils);
+
   const handleClick = useCallback(() => {
     setFacingMode(
       prevState =>
@@ -84,7 +87,36 @@ function App() {
     }
   }
 
-      const hands = new Hands({
+    //   const hands = new Hands({
+    //   locateFile:(file) => {
+    //     return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+    //   }
+    // })
+
+    // hands.setOptions({
+    //   maxNumHands: 2,
+    //   modelComplexity: 1,
+    //   minDetectionConfidence: 0.5,
+    //   minTrackingConfidence: 0.5,
+    //   //selfieMode: true,
+    // })
+
+    // hands.onResults(onResults);
+
+    // if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null){
+    //   camera = new cam.Camera(webcamRef.current.video, {
+    //     onFrame: async()=>{
+    //       await hands.send({image:webcamRef.current.video})
+    //     },
+    //     //width: 640,
+    //     //height: 480,
+    //   })
+
+    //   camera.start();
+    // }
+
+  useEffect(() => {
+    const hands = new Hands({
       locateFile:(file) => {
         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
       }
@@ -95,7 +127,7 @@ function App() {
       modelComplexity: 1,
       minDetectionConfidence: 0.5,
       minTrackingConfidence: 0.5,
-      //selfieMode: true,
+      selfieMode: true,
     })
 
     hands.onResults(onResults);
@@ -112,36 +144,7 @@ function App() {
       camera.start();
     }
 
-  // useEffect(() => {
-  //   const hands = new Hands({
-  //     locateFile:(file) => {
-  //       return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-  //     }
-  //   })
-
-  //   hands.setOptions({
-  //     maxNumHands: 2,
-  //     modelComplexity: 1,
-  //     minDetectionConfidence: 0.5,
-  //     minTrackingConfidence: 0.5,
-  //     //selfieMode: true,
-  //   })
-
-  //   hands.onResults(onResults);
-
-  //   if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null){
-  //     camera = new cam.Camera(webcamRef.current.video, {
-  //       onFrame: async()=>{
-  //         await hands.send({image:webcamRef.current.video})
-  //       },
-  //       //width: 640,
-  //       //height: 480,
-  //     })
-
-  //     camera.start();
-  //   }
-
-  // })
+  })
   return (
     
         <div className="outer-div">
@@ -150,12 +153,12 @@ function App() {
           ...videoConstraints,
           facingMode
           }}/>
-          {/* <Canvas className="canvas-wrapper">
+          <Canvas className="canvas-wrapper">
             <pointLight intensity={1}/>
             <Suspense fallback={null}>
               <Model position={[0,0,-3]}/>
             </Suspense>
-          </Canvas> */}
+          </Canvas>
         </div>
     
   );
