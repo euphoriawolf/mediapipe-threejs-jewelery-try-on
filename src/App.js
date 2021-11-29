@@ -1,6 +1,5 @@
 import './App.css';
 import {Hands} from "@mediapipe/hands";
-import * as HandsM from "@mediapipe/hands";
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
 import {useRef, useEffect, Suspense, useState, useCallback} from "react";
@@ -12,7 +11,7 @@ import * as controlUtils from "@mediapipe/control_utils";
 const Lights = () => {
   return (
       <>
-          <pointLight position={[0,0,0]} intensity={2} />
+          <pointLight position={[10,10,10]} intensity={2} />
       </>
   )
 }
@@ -34,7 +33,6 @@ const Model = () => {
     ref.current.position.x = (landmark_x - 0.5)*10;
     ref.current.position.y = -(landmark_y - 0.5)*7.5;
     //ref.current.position.z = -(landmark_z)*10;
-    //ref.current.rotation.
     ref.current.scale.x = scale*33;
     ref.current.scale.y = scale*33;
     ref.current.scale.z = scale*33;
@@ -48,7 +46,7 @@ const Model = () => {
 
 var landmark_x = -100;
 var landmark_y = -100;
-var landmark_z = -100;
+//var landmark_z = -100;
 var scale = 0.1;
 
 
@@ -69,51 +67,20 @@ function App() {
   }, []);
 
   const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
   var camera = null;
 
   function onResults(results){
-    console.log(results);
     if (results.multiHandLandmarks) {
       for (const landmarks of results.multiHandLandmarks) {
         if (landmarks[14].x !== "undefined") {
           landmark_x = (landmarks[14].x + landmarks[13].x)/2;
           landmark_y = (landmarks[14].y + landmarks[13].y)/2;
-          landmark_z = (landmarks[14].z + landmarks[13].z)/2;
+          //landmark_z = (landmarks[14].z + landmarks[13].z)/2;
           scale = landmarks[13].y - landmarks[14].y;
-          //console.log(scale);
         }
       }
     }
   }
-
-    //   const hands = new Hands({
-    //   locateFile:(file) => {
-    //     return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-    //   }
-    // })
-
-    // hands.setOptions({
-    //   maxNumHands: 2,
-    //   modelComplexity: 1,
-    //   minDetectionConfidence: 0.5,
-    //   minTrackingConfidence: 0.5,
-    //   //selfieMode: true,
-    // })
-
-    // hands.onResults(onResults);
-
-    // if(typeof webcamRef.current !== "undefined" && webcamRef.current !== null){
-    //   camera = new cam.Camera(webcamRef.current.video, {
-    //     onFrame: async()=>{
-    //       await hands.send({image:webcamRef.current.video})
-    //     },
-    //     //width: 640,
-    //     //height: 480,
-    //   })
-
-    //   camera.start();
-    // }
 
   useEffect(() => {
     const hands = new Hands({
@@ -154,9 +121,9 @@ function App() {
           facingMode
           }}/>
           <Canvas className="canvas-wrapper">
-            <pointLight intensity={1}/>
+            <Lights></Lights>
             <Suspense fallback={null}>
-              <Model position={[0,0,-3]}/>
+              <Model position={[0,0,0]}/>
             </Suspense>
           </Canvas>
         </div>
