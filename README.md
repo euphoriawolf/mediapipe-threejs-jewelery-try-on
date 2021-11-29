@@ -2,7 +2,7 @@
 
 This project aims to create Real-time Web based Virtual Jewelery Try-on experiences.
 
-It is built with [React](https://github.com/facebook/react), using [MediaPipe](https://github.com/google/mediapipe), [ThreeJS - react-three/fiber](https://github.com/pmndrs/react-three-fiber) and [react-webcam](https://github.com/mozmorris/react-webcam).
+It is built with [React](https://github.com/facebook/react), using [MediaPipe](https://github.com/google/mediapipe), [ThreeJS - react-three/fiber](https://github.com/pmndrs/react-three-fiber) and [react-webcam](https://github.com/mozmorris/react-webcam).\
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Demo
