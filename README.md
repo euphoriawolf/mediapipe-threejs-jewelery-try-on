@@ -13,7 +13,8 @@ Try on Desktop and Mobile browsers to check the performance differences.
 
 ## Limitations
 
-This project runs well on Desktop browsers (>20fps) but does not perform well on Mobile browsers (<5fps). This is related to Mediapipe. More research is needed and currently WIP.
+- This project runs well on Desktop browsers (>20fps) but does not perform well on Mobile browsers (<5fps). This is related to Mediapipe. More research is needed and currently WIP.
+- Check [Performance Characteristics](https://blog.tensorflow.org/2020/03/face-and-hand-tracking-in-browser-with-mediapipe-and-tensorflowjs.html)
 
 ## Work in Progress (WIP)
 
