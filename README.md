@@ -17,7 +17,8 @@ This project runs well on Desktop browsers (>20fps) but does not perform well on
 
 ## Work in Progress (WIP)
 
-The 3D model currently currently tracks Ring Finger, but 3D object rotations and scaling are WIP.
+- The 3D model currently currently tracks Ring Finger, but 3D object rotations and scaling are WIP.
+- GLTFLoader has a problem loading 3D objects from the public folder. We believe it is related to headers. It is currently WIP.
 
 ## Available Scripts
 
