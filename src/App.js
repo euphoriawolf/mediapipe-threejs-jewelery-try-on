@@ -26,7 +26,7 @@ const videoConstraints = {
 
 
 const Model = () => {
-  const gltf = useLoader(GLTFLoader, "./Ring.glb");
+  const gltf = useLoader(GLTFLoader, "https://3dfoodmodel-modelviewer.s3.amazonaws.com/assets/Bolle/Nevada_Blue/BolleNevada_Blue_v1.glb");
   const ref = useRef();
 
   useFrame((state, delta) => {
