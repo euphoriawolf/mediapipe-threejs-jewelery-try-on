@@ -9,13 +9,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [Jewelery Try-on Demo](https://main.d2ablu3msld68r.amplifyapp.com/)
 
+Try on Desktop and Mobile browsers to check the performance differences.
+
 ## Limitations
 
-This project runs well on Desktop browsers (>20fps) but does not perform well on Mobile browsers (<5fps). This is due to MediaPipe.
+This project runs well on Desktop browsers (>20fps) but does not perform well on Mobile browsers (<5fps). This is related to Mediapipe. More research is needed and currently WIP.
 
 ## Work in Progress (WIP)
 
-The 3D model currently currently tracks Ring Finger, but rotations and scaling are WIP.
+The 3D model currently currently tracks Ring Finger, but 3D object rotations and scaling are WIP.
 
 ## Available Scripts
 
