@@ -11,6 +11,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Try on Desktop and Mobile browsers to check the performance differences.
 
+## Under the Hood
+
+This demo app currently captures a video stream via [react-webcam](https://github.com/mozmorris/react-webcam), feeds the stream into [MediaPipe Hands](https://google.github.io/mediapipe/solutions/hands.html) which tracks 21 3D landmarks of a hand from just a single frame, which then provides real-time locations to [ThreeJS - react-three/fiber](https://github.com/pmndrs/react-three-fiber) render the 3D object accordingly.
+
+![Hand Landmarks](https://google.github.io/mediapipe/images/mobile/hand_landmarks.png)
+
 ## Limitations
 
 - This project runs well on Desktop browsers (>20fps) but does not perform well on Mobile browsers (<5fps). This is related to Mediapipe. More research is needed and currently WIP.
