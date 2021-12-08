@@ -8,6 +8,7 @@
     "@mediapipe/control_utils": "^0.6.1629159505",
     "@mediapipe/hands": "^0.4.1635986972",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
+    "@react-three/drei": "^7.27.0",
     "@react-three/fiber": "^7.0.19",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "^5.15.0",

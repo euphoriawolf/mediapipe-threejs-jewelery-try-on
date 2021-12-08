@@ -7,6 +7,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as controlUtils from "@mediapipe/control_utils";
+import { Environment } from "@react-three/drei";
 
 const Lights = () => {
   return (
@@ -26,7 +27,7 @@ const videoConstraints = {
 
 
 const Model = () => {
-  const gltf = useLoader(GLTFLoader, "https://3dfoodmodel-modelviewer.s3.amazonaws.com/assets/Bolle/Nevada_Blue/BolleNevada_Blue_v1.glb");
+  const gltf = useLoader(GLTFLoader, "https://ttb-dev.s3.amazonaws.com/RingTransformed.glb");
   const ref = useRef();
 
   useFrame((state, delta) => {
@@ -72,6 +73,7 @@ function App() {
   function onResults(results){
     if (results.multiHandLandmarks) {
       for (const landmarks of results.multiHandLandmarks) {
+        console.log(landmarks[0]);
         if (landmarks[14].x !== "undefined") {
           landmark_x = (landmarks[14].x + landmarks[13].x)/2;
           landmark_y = (landmarks[14].y + landmarks[13].y)/2;
@@ -115,7 +117,7 @@ function App() {
   return (
     
         <div className="outer-div">
-        <button className="webcam-wrapper" style={{zIndex:20}} onClick={handleClick}>Switch camera</button>
+        {/* <button className="webcam-wrapper" style={{zIndex:20}} onClick={handleClick}>Switch camera</button> */}
           <Webcam className="webcam-wrapper" ref={webcamRef} mirrored={facingMode === FACING_MODE_USER ? true : false} videoConstraints={{
           ...videoConstraints,
           facingMode
@@ -124,6 +126,7 @@ function App() {
             <Lights></Lights>
             <Suspense fallback={null}>
               <Model position={[0,0,0]}/>
+              <Environment preset="studio"></Environment>
             </Suspense>
           </Canvas>
         </div>
