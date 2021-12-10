@@ -8,6 +8,12 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as controlUtils from "@mediapipe/control_utils";
 import { Environment, OrbitControls } from "@react-three/drei";
+import { Html, useProgress } from '@react-three/drei'
+
+function Loader() {
+  const { progress } = useProgress()
+  return <Html center>{progress} % loaded</Html>
+}
 
 const Lights = () => {
   return (
@@ -165,7 +171,7 @@ function App() {
           }}/>
           <Canvas camera={{fov:75, position: [0, 0, 0.5] }} className="canvas-wrapper">
             <Lights></Lights>
-            <Suspense fallback={null}>
+            <Suspense fallback={<Loader />}>
               <Model position={[0,0,0]}/>
               <Environment preset="studio"></Environment>
               <OrbitControls></OrbitControls>
